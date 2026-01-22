@@ -4,17 +4,15 @@ import UserEdit from '../components/Users/EditUser.vue'
 import UserShow from '../components/Users/ShowUser.vue'
 import UserIndex from '../components/Users/Index.vue'
 
-
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'home',
       component: () => import('../views/HomeView.vue'),
     },
- 
-   {
+    {
       path: '/users',
       name: 'users',
       component: UserIndex
@@ -25,12 +23,12 @@ const router = createRouter({
       component: UserCreate
     },
     {
-      path: '/user/edit/:userId', // เพิ่ม :userId เพื่อรับค่า
+      path: '/user/edit/:userId',
       name: 'user-edit',
       component: UserEdit
     },
     {
-      path: '/user/:userId', // เพิ่ม :userId
+      path: '/user/:userId',
       name: 'user',
       component: UserShow
     }

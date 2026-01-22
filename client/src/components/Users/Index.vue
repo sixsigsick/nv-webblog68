@@ -7,12 +7,12 @@
 
 <script>
 export default {
-     methods: {
+  // Logic จะเขียนตรงนี้
+    methods: {
     navigateTo (route) {
       this.$router.push(route)
     }
   }
-  // Logic จะเขียนตรงนี้
 }
 </script>
 
