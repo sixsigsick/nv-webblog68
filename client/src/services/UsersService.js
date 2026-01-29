@@ -1,4 +1,4 @@
-import Api from './Api'
+import Api from '../services/Api'
 
 export default {
     index () {
@@ -17,3 +17,4 @@ export default {
         return Api().delete('user/'+user.id) // แก้ไข user เป็น user.id ตามหลักการส่ง id
     },
 }
+

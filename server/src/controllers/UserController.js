@@ -1,14 +1,4 @@
 const {User} = require('../models')
-const bcrypt = require('bcrypt')
-
-async function hashPassword (user, options) {
-    if (!user.changed('password')) {
-        return
-    }
-    const salt = await bcrypt.genSalt(10)
-    const hash = await bcrypt.hash(user.password, salt)
-    user.setDataValue('password', hash)
-}
 
 module.exports = {
     // get all user
@@ -17,7 +7,6 @@ module.exports = {
             const users = await User.findAll()
             res.send(users)
         } catch (err) {
-            console.error(err)
             res.status(500).send({
                 error: 'The users information was incorrect'
             })
@@ -30,7 +19,6 @@ module.exports = {
             const user = await User.create(req.body)
             res.send(user.toJSON())
         } catch (err) {
-            console.error(err)
             res.status(500).send({
                 error: 'Create user incorrect'
             })
@@ -47,7 +35,6 @@ module.exports = {
             })
             res.send(req.body)
         } catch (err) {
-            console.error(err)
             res.status(500).send({
                 error: 'Update user incorrect'
             })
@@ -72,7 +59,6 @@ module.exports = {
             await user.destroy()
             res.send(user)
         } catch (err) {
-            console.error(err)
             res.status(500).send({
                 error: 'The user information was incorrect'
             })
@@ -85,10 +71,10 @@ module.exports = {
             const user = await User.findByPk(req.params.userId)
             res.send(user)
         } catch (err) {
-            console.error(err)
             res.status(500).send({
                 error: 'The user information was incorrect'
             })
         }
     }
 }
+
