@@ -1,32 +1,28 @@
 <template>
   <div>
     <h1>Show User</h1>
-    <div v-if="user">
-      <p>ID : {{ this.user.id }}</p>
-      <p>ชื่อ - นามสกุล : {{ this.user.name }} {{ this.user.lastname }}</p>
-      <p>Email : {{ this.user.email }}</p>
-      <p>Password : {{ this.user.password }}</p>
-    </div>
+    <p>User ID: {{ this.user.id }}</p>
+    <p>User Email: {{ this.user.email }}</p>
+    <p>User First Name: {{ this.user.name }}</p>
+    <p>User Last Name: {{ this.user.lastname }}</p>
+
   </div>
 </template>
 
 <script>
-import UsersService from '../../services/UsersService'
+import UserServices from '../../services/UsersService'
 export default {
-  data() {
+  // Logic จะเขียนตรงนี้
+  data () {
     return {
       user: null
     }
   },
-  created() {
+  async created () {
+    var userId = this.$route.params.userId 
+    this.user = (await UserServices.show(userId)).data
     console.log("created userId:", this.user)
   },
-  async mounted() {
-    var userId = this.$route.params.userId
-    this.user = (await UsersService.show(userId)).data
-    console.log("mounted userId:", this.user)
-  }
-
 }
 </script>
 

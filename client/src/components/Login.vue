@@ -8,11 +8,11 @@
             <div class="error" v-if="error">{{ error }}</div>
         </form>
     </div>
-</template>
 
+</template>
 <script>
-import AuthenService from '../services/AuthenService'
-import { useAuthenStore } from '../stores/authen'
+import AuthenService from '../services/AuthenService';
+import { useAuthenStore } from '../stores/authen';
 
 export default {
     data() {
@@ -29,8 +29,7 @@ export default {
                     email: this.email,
                     password: this.password
                 })
-
-                console.log(response.data) // ดูค่าที่ได้ก่อน
+                console.log(response.data)
 
                 // เรียกใช้ Store
                 const authenStore = useAuthenStore()
@@ -38,20 +37,19 @@ export default {
                 // เก็บ Token และ User เข้า Store
                 authenStore.setToken(response.data.token)
                 authenStore.setUser(response.data.user)
-
+                
                 this.$router.push({
                     name: 'users'
                 })
-
             } catch (error) {
                 console.log(error)
                 this.error = error.response.data.error
+
             }
         }
     }
 }
 </script>
-
 <style scoped>
 .error {
     color: red;

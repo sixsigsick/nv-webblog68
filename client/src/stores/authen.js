@@ -22,4 +22,3 @@ export const useAuthenStore = defineStore('authen', {
   },
   persist: true // บันทึกลง Local Storage อัตโนมัติ
 })
-
